@@ -18,12 +18,14 @@
         color="btn-warning"
         @action="readNews">Прочесть новость
     </app-button>
+    <app-news-list></app-news-list>
   </div>
 </div>
 </template>
 
 <script>
 import AppButton from "@/components/AppButton.vue";
+import AppNewsList from "@/components/AppNewsList.vue";
 export default {
   name: "AppNews.vue",
   emits: {
@@ -84,7 +86,7 @@ export default {
       this.$emit('no-read-news',this.id)
     }
   },
-  components: {AppButton}
+  components: {AppButton, AppNewsList}
 }
 </script>
 

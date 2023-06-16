@@ -12,14 +12,22 @@
     @read-news=readNews
     @no-read-news=noReadNews
 ></app-news>
+
 </template>
 
 <script>
 
 import AppNews from "@/components/AppNews.vue";
 
+
 export default {
   name: 'App',
+  provide() {
+    return {
+      title: "Список всех новостей",
+      news: this.news
+    }
+  },
   components: {AppNews},
   data () {
     return {
