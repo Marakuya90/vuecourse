@@ -2,18 +2,21 @@
 <div class="container">
   <h2 class="mb-4">Анкета на VUE разработчика</h2>
   <form action="#" @submit.prevent="submitHandler">
-
-
-    <div class="form-control">
-      <label class="form-label" for="age">Выбери возраст</label>
-      <input
-          type="number"
-          v-model.number="age"
-          class="form-control mb-3"
-          id="age"
-          max="70">
-    </div>
-
+    <app-input
+        type="text"
+        placeholder="Введи имя"
+        :error="errors.name"
+        label="Как тебя зовут?"
+        v-model="name"
+        margin="mb-3"
+    ></app-input>
+    <app-input
+        type="number"
+        label="Выбери возраст"
+        v-model=age
+        margin="mb-3"
+        max="70"
+    ></app-input>
     <div class="form-control">
     <label class="form-label" for="city">Выбери город</label>
     <select
@@ -25,7 +28,6 @@
       <option value="spb">Санкт-Петербург</option>
     </select>
     </div>
-
     <div class="form-control">
     <h4>Ты готов к переезду в Токио</h4>
       <div id="moving" class="d-flex flex-column">
@@ -97,9 +99,21 @@
 </template>
 
 <script>
-
+import AppInput from "@/components/AppInput.vue";
 export default {
   name: "app-form",
+  data() {
+    return {
+      name: '',
+      age: 23,
+      city: 'spb',
+      relocate: 'yes',
+      skills: [],
+      errors: {
+        name: null
+      }
+    }
+  },
   methods: {
     formIsValid() {
       let isValid = true
@@ -123,22 +137,11 @@ export default {
       }
     }
   },
-    data() {
-      return {
-        name: '',
-        age: 23,
-        city: 'spb',
-        relocate: 'yes',
-        skills: [],
-        errors: {
-          name: null
-        }
-      }
-    }
+    components: {AppInput}
 }
 </script>
 
-<style scoped>
+<style>
 .form-control small {
   color: darkred;
 }
